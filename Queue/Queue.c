@@ -11,6 +11,24 @@ Queue *queue_init(void)
     return queue;
 }
 
+void *queue_peek(Queue *queue)
+{
+    void *data;
+    if (queue == NULL)
+    {
+        fprintf(stderr, "Cannot enqueue null queue.\n");
+        return NULL;
+    }
+
+    if (queue->head == NULL)
+    {
+        fprintf(stderr, "Cannot peek empty queue.\n");
+        return NULL;
+    }
+    
+    return queue -> head -> data;
+}
+
 void queue_enqueue(Queue *queue, void *data)
 {
     if (queue == NULL)
@@ -30,7 +48,7 @@ void *queue_dequeue(Queue *queue)
         return NULL;
     }
 
-    if(queue -> head == NULL)
+    if (queue->head == NULL)
     {
         fprintf(stderr, "Cannot dequeue empty queue.\n");
         return NULL;
